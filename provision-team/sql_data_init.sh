@@ -52,29 +52,32 @@ if [[ -z "$sqlDBName" ]]; then
     read sqlDBName
 fi
 
+echo "Updating schema"
+/opt/mssql-tools/bin/sqlcmd -U $sqlServerUsername -P $sqlPassword -S $sqlServerFQDN -d $sqlDBName -i MYDrivingDB.sql -e
+
 echo "Importing Devices"
-bcp Devices in ./data_load/Devices_export.txt -S $sqlServerFQDN -U $sqlServerUsername -P $sqlPassword -d $sqlDBName -c -t ','
+/opt/mssql-tools/bin/bcp Devices in ./data_load/Devices_export.txt -S $sqlServerFQDN -U $sqlServerUsername -P $sqlPassword -d $sqlDBName -c -t ','
 
 echo "Importing factMLOutputData"
-bcp factMLOutputData in ./data_load/factMLOutputData_export.txt -S $sqlServerFQDN -U $sqlServerUsername -P $sqlPassword -d $sqlDBName -c -t ','
+/opt/mssql-tools/bin/bcp factMLOutputData in ./data_load/factMLOutputData_export.txt -S $sqlServerFQDN -U $sqlServerUsername -P $sqlPassword -d $sqlDBName -c -t ','
 
 echo "Importing IOTHubDatas"
-bcp IOTHubDatas in ./data_load/IOTHubDatas_export.txt -S $sqlServerFQDN -U $sqlServerUsername -P $sqlPassword -d $sqlDBName -c -t ','
+/opt/mssql-tools/bin/bcp IOTHubDatas in ./data_load/IOTHubDatas_export.txt -S $sqlServerFQDN -U $sqlServerUsername -P $sqlPassword -d $sqlDBName -c -t ','
 
 echo "Importing POIs"
-bcp POIs in ./data_load/POIs_export.txt -S $sqlServerFQDN -U $sqlServerUsername -P $sqlPassword -d $sqlDBName -c -t ','
+/opt/mssql-tools/bin/bcp POIs in ./data_load/POIs_export.txt -S $sqlServerFQDN -U $sqlServerUsername -P $sqlPassword -d $sqlDBName -c -t ','
 
 echo "Importing TripPoints"
-bcp TripPoints in ./data_load/TripPoints_export.txt -S $sqlServerFQDN -U $sqlServerUsername -P $sqlPassword -d $sqlDBName -c -t ','
+/opt/mssql-tools/bin/bcp TripPoints in ./data_load/TripPoints_export.txt -S $sqlServerFQDN -U $sqlServerUsername -P $sqlPassword -d $sqlDBName -c -t ','
 
 echo "Importing Trips"
-bcp Trips in ./data_load/Trips_export.txt -S $sqlServerFQDN -U $sqlServerUsername -P $sqlPassword -d $sqlDBName -c -t ','
+/opt/mssql-tools/bin/bcp Trips in ./data_load/Trips_export.txt -S $sqlServerFQDN -U $sqlServerUsername -P $sqlPassword -d $sqlDBName -c -t ','
 
 echo "Importing UserProfiles"
-bcp UserProfiles in ./data_load/UserProfiles_export.txt -S $sqlServerFQDN -U $sqlServerUsername -P $sqlPassword -d $sqlDBName -c -t ','
+/opt/mssql-tools/bin/bcp UserProfiles in ./data_load/UserProfiles_export.txt -S $sqlServerFQDN -U $sqlServerUsername -P $sqlPassword -d $sqlDBName -c -t ','
 
 echo "Importing POISource"
-bcp POISource in ./data_load/POISource_export.txt -S $sqlServerFQDN -U $sqlServerUsername -P $sqlPassword -d $sqlDBName -c -t ','
+/opt/mssql-tools/bin/bcp POISource in ./data_load/POISource_export.txt -S $sqlServerFQDN -U $sqlServerUsername -P $sqlPassword -d $sqlDBName -c -t ','
 
 echo "Importing TripPointSource"
-bcp TripPointSource in ./data_load/TripPointSource_export.txt -S $sqlServerFQDN -U $sqlServerUsername -P $sqlPassword -d $sqlDBName -c -t ','
+/opt/mssql-tools/bin/bcp TripPointSource in ./data_load/TripPointSource_export.txt -S $sqlServerFQDN -U $sqlServerUsername -P $sqlPassword -d $sqlDBName -c -t ','
